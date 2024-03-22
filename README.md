@@ -30,3 +30,14 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 php artisan make:policy TaskPolicy --model=Task
 ```
 
+## 
+
+```bash
+maatwebsite/excel 3.1.48
+```
+
+
+
+```bash
+php artisan make:export TaskExport --model=Task
+```

@@ -22,3 +22,7 @@ Route::fallback(function () {
 Auth::routes(['verify' => true]);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('can:isUser');
+
+// Export
+
+Route::get('export', [TaskController::class, 'export_tasks'])->name('Tasks.export');

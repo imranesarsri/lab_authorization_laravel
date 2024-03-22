@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Exports\TaskExport;
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Repositories\TaskRepository;
-use App\Repositories\ProjectRepository;
-use App\Http\Requests\FormTaskRequest;
 use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\FormTaskRequest;
+use App\Repositories\ProjectRepository;
 
 class TaskController extends Controller
 {
@@ -81,5 +84,10 @@ class TaskController extends Controller
         }
         $this->TaskRepository->delete($task);
         return redirect()->route('tasks.index')->with('success', 'Tâche supprimée avec succès !');
+    }
+
+    public function export_tasks()
+    {
+        return Excel::download(new TaskExport, 'tasks.xlsx');
     }
 }

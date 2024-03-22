@@ -1,17 +1,9 @@
-@if ($Tasks->isEmpty())
-    <tr>
-        <td colspan="4" class="text-center">
-            <img style="width: 40%;" src="{{ asset('images/emptyResult.png') }}" alt="Empty Result">
-        </td>
-    </tr>
-@else
-    @foreach ($Tasks as $Task)
+@foreach ($Tasks as $Task)
+    <div>
         <tr>
             <td>{{ $Task->name }}</td>
             <td>{{ $Task->project->name }}</td>
-
             <td>{{ Str::limit($Task->description, 60) }}</td>
-
             <td class="d-flex">
                 <a href="{{ route('tasks.show', $Task->id) }}" class="btn btn-sm btn-default">
                     <i class="fa-solid fa-eye"></i>
@@ -30,18 +22,7 @@
                         </button>
                     </form>
                 @endcan
-
             </td>
         </tr>
-    @endforeach
-@endif
-
-<tr>
-    <td colspan="3"></td>
-    <td>
-        <div class="pagination m-0 float-right">
-            {{ $Tasks->links() }}
-        </div>
-
-    </td>
-</tr>
+    </div>
+@endforeach
