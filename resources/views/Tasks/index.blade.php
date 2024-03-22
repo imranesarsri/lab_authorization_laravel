@@ -6,11 +6,13 @@
                 <div class="col-sm-6">
                     <h1>Liste des tâches</h1>
                 </div>
-                <div class="col-sm-6">
-                    <div class="float-sm-right">
-                        <a href="{{ route('tasks.create') }}" class="btn btn btn-info">Ajouter tâche</a>
+                @can('create', 'App\Models\Task')
+                    <div class="col-sm-6">
+                        <div class="float-sm-right">
+                            <a href="{{ route('tasks.create') }}" class="btn btn btn-info">Ajouter tâche</a>
+                        </div>
                     </div>
-                </div>
+                @endcan
             </div>
         </div>
     </div>

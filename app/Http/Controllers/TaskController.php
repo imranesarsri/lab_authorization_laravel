@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\TaskRepository;
 use App\Repositories\ProjectRepository;
 use App\Http\Requests\FormTaskRequest;
-
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -36,6 +36,9 @@ class TaskController extends Controller
 
     public function create()
     {
+        if (Gate::denies('create', Task::class)) {
+            return abort(403);
+        }
         $ProjectsFilter = $this->ProjectRepository->projectFilters();
         return view('Tasks.create', compact('ProjectsFilter'));
     }
@@ -51,12 +54,14 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         return view('Tasks.show', compact('task'));
-
     }
 
 
     public function edit(Task $task)
     {
+        if (Gate::denies('update', $task)) {
+            return abort(403);
+        }
         $ProjectsFilter = $this->ProjectRepository->projectFilters();
         return view('Tasks.edit', compact('task', 'ProjectsFilter'));
     }
@@ -71,6 +76,9 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
+        if (Gate::denies('delete', $task)) {
+            return abort(403);
+        }
         $this->TaskRepository->delete($task);
         return redirect()->route('tasks.index')->with('success', 'Tâche supprimée avec succès !');
     }

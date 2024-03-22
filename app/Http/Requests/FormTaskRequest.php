@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FormTaskRequest extends FormRequest
@@ -12,7 +13,8 @@ class FormTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::check() && Auth::user()->email === "imrane@gmail.com";
+        // return Auth::check() && Auth::user()->email === "imrane@gmail.com";
+        return Gate::allows('isAdmin');
     }
 
     /**
