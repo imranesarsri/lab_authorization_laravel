@@ -39,9 +39,6 @@
                                                 class="fas fa-filter"></i></label>
                                         <select name="project_id" class="form-select form-control"
                                             id="filterSelectProjetValue" aria-label="Filter Select">
-                                            {{-- @isset($Task)
-
-                                            @endisset --}}
                                             <option value="Tout le projets">Tout le projets</option>
                                             @foreach ($ProjectsFilter as $ProjectFilter)
                                                 <option @selected($ProjectFilter->id == $Task) value="{{ $ProjectFilter->id }}">
