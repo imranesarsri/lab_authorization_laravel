@@ -19,7 +19,7 @@ class PermitionSeeder extends Seeder
 
     private function createPermissionsForController($controller)
     {
-        $actions = ['create', 'store', 'show', 'edit', 'update', 'destroy', 'index'];
+        $actions = ['index', 'show', 'create', 'store', 'edit', 'update', 'destroy'];
 
         foreach ($actions as $action) {
             $permissionName = $action . '-' . $controller . 'Controller';
